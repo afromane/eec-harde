@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Groupe{% endblock %}
+{% block title %}Type activite{% endblock %}
 
 
 {% block body %}
@@ -8,7 +8,7 @@
         <div class="mb-3">
             <h1 class="h3 d-inline align-middle">{{ action}}</h1>
             <a class="badge bg-dark text-white ms-2" >
-                Groupe
+                Type activite
             </a>
         </div>
         <div class="row">
@@ -17,18 +17,25 @@
                     <div class="card">
                         
                         <div class="card-body">
-                            <label>Designation</label> <br>
+                            <label>Titre</label> <br>
                             {% if item.label !="" %}
                               <input type="text" class="form-control" name="label" value="{{ item.label }}" required>
                             {% else %}
                                <input type="text" class="form-control" name="label" required>
+                            {% endif  %}
+
+                            <label>Description</label> <br>
+                            {% if item.description !="" %}
+                                <textarea class="form-control" name="description">{{ item.description }}</textarea>
+                            {% else %}
+                                <textarea class="form-control" name="description"></textarea>
                             {% endif  %}
                              
                         </div>
 
                         <div class="card-footer">
                         <div style="position:absolute; right:10px;bottom:20px;">
-                                <a href="{{ path('app_groupe')}}" class="btn btn-danger">Annuler</a>
+                                <a href="{{ path('app_type_activite')}}" class="btn btn-danger">Annuler</a>
                                 <button type="submit" class="btn btn-primary">{{ action}}</button>
                             </div>
                             <br>

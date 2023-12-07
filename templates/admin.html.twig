@@ -46,18 +46,18 @@
 						Enrolement
 					</li>
 
-					{# <li class="sidebar-item ">
-						<a class="sidebar-link" href="{{path('app_client_attente')}}">
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="{{path('app_enrolement_en_attente')}}">
 							<i class="align-middle" data-feather="pause-circle"></i> <span
 								class="align-middle">En attente</span>
 						</a>
 					</li>
 					<li class="sidebar-item ">
-						<a class="sidebar-link" href="{{path('app_client_confirmer')}}">
+						<a class="sidebar-link" href="{{path('app_enrolement_confirmer')}}">
 							<i class="align-middle" data-feather="check"></i> <span
 								class="align-middle">Confirmer</span>
 						</a>
-					</li> #}
+					</li> 
 					{# {% for i in app.session.get('roles') %}
 					{% if i== "ROLE_ADMIN" %} #}
 					
@@ -65,10 +65,13 @@
 							Utilisateur
 						</li>
 						<li class="sidebar-item ">
-							<a class="sidebar-link" href="">
+							<a class="sidebar-link" href="{{path('app_account')}}">
 								<i class="align-middle" data-feather="users"></i> <span
 									class="align-middle">Liste utilisateur</span>
 							</a>
+						</li>
+						<li class="sidebar-header">
+							Menu
 						</li>
 						<li class="sidebar-header">
 							Menu
@@ -196,7 +199,7 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								{# <a class="dropdown-item" href="{{path('app_profile')}}"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a> #}
-								<a class="dropdown-item" href="">Log out</a>
+								<a href="{{path('app_logout')}}" class="dropdown-item" href="">Se deconnecter</a>
 							</div>
 						</li>
 					</ul>

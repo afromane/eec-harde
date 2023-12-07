@@ -68,6 +68,7 @@ class ActiviteController extends AbstractController
                 'item' => $activity,
                 'action' => "Enregistrer",
                 'label' => "Nouveau",
+                'imgShow' => true,
                 'types' => $typeActiviteRepository->findAll()
             )
         );

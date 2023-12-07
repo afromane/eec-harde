@@ -1,12 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Enrolement{% endblock %}
+{% block javascripts %} 
+
+<script>
+
+ $('#recordEnrolment').submit(function(event){
+       event.preventDefault();
+       $('.save').attr('disabled','disabled');
+        $.ajax({
+            url: $(this).attr('action'),
+            method: "POST",
+            data : new FormData(this),
+            dataType:"json",
+            contentType: false,
+            cache: false,
+            processData: false,          
+            success: function(data)
+            {
+            $('.save').removeAttr('disabled');
+            
+              swal('Success','Enrolement effectué','success');
+              window.setTimeout(function(){  location.reload(); }, 3000);
+                
+            },
+            error: function(data)
+            {
+            jQuery('.save').removeAttr('disabled');
+                alert('error'+data);
+            }
+        }); 
+         
+         
+               
+    });
+
+</script>
+
+
+{% endblock %}
 
 {% block body %}
 
 <main id="main">
-
-    <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
       <div class="container">
 
@@ -21,11 +57,56 @@
       </div>
     </section><!-- End Breadcrumbs Section -->
 
-    <section class="inner-page">
-      <div class="container">
-        <p>
-          Example inner page template
-        </p>
+   <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Enrolez vous maintenant</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+            <form  id="recordEnrolment" action="" method="post" role="form" class="php-email-form">
+               <div class="form-group">
+                  <label>Nom(s) et prenom(s) *</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" required>
+                </div>
+               <div class="form-group">
+                  <label>Téléphone *</label>
+					      	<input id="phone" class="form-control" type="tel"   name="tel" required minlength="9" maxlength="13">
+                </div>
+              <div class="form-group">
+                <label>Quartier *</label>
+                <input type="text" class="form-control" name="quartier"  placeholder="Quartier" required>
+              </div>
+              <div class="form-group">
+                <label>Groupe *</label>
+                <select class="form-control"  name="groupe">
+                  {% for i in groupes %}
+                      <option value="{{i.id}}">{{i.label}}</option>
+                  {% endfor %}
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>Etes vous  communuant ?*</label>
+                <select class="form-control"  name="communuant">
+                      <option value="oui">Oui</option>
+                      <option value="non">Non</option>
+                  </select>
+              </div>
+             
+              {# <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div> #}
+              <div class="text-center"><button type="submit" class="save">Soumettre</button></div>
+            </form>
+          </div>
+
+        </div>
+
       </div>
     </section>
 
